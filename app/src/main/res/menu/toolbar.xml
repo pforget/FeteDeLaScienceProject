@@ -4,31 +4,26 @@
 
     <item android:id="@+id/toolbar_search"
         android:title="Search"
-        android:icon="@drawable/ic_search_black_24dp"
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView" />
 
     <item
         android:id="@+id/toolbar_map"
-        android:icon="@drawable/ic_place_black_24dp"
         android:title="Map"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/toolbar_list"
-        android:icon="@drawable/ic_view_list_black_24dp"
         android:title="List"
         app:showAsAction="never"/>
 
     <item
         android:id="@+id/toolbar_course"
-        android:icon="@drawable/ic_explore_black_24dp"
         android:title="Courses"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/toolbar_share"
-        android:icon="@drawable/ic_share_black_24dp"
         android:title="Share"
         app:showAsAction="never"/>
 
