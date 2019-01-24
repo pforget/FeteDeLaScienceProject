@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailsEvents"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageEvent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:id="@+id/titleEvent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"/>
+
+        <TextView
+            android:id="@+id/descriptionEvent"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp" />
+
+        <Button
+            android:id="@+id/planEvent"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to plan"
+            style="@style/Widget.AppCompat.Button.Colored"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remaining places : "/>
+            <TextView
+                android:id="@+id/remainingPlacesTextView"
+                android:text="idk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <NumberPicker
+                android:id="@+id/remainingPlacesNumberPicker"
+                android:layout_width="100dp"
+                android:layout_height="45dp"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/applyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:text="Apply"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+          >
+            <RatingBar
+                android:id="@+id/ratingEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rating="2.5"
+                android:stepSize="0.5"
+                android:numStars="5"/>
+            <Button
+                android:id="@+id/rateButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onRateClicked"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:text="Rate"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/numberVote" />
+
+        </LinearLayout>
+        <LinearLayout android:id="@+id/routeLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Display On Map"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:onClick="DisplayOnMap"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton android:id="@+id/driveRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Drive"
+                    android:checked="true"
+                    android:onClick="onRadioButtonClicked"/>
+                <RadioButton android:id="@+id/walkRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Walk"
+                    android:onClick="onRadioButtonClicked"/>
+                <RadioButton android:id="@+id/bikeRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bike"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lets GO"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:onClick="intentGMRoute"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/warningText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No Geolocation found"
+            android:visibility="gone"/>
+    </LinearLayout>
+</ScrollView>

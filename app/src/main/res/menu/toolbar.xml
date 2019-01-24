@@ -8,18 +8,17 @@
         app:actionViewClass="android.widget.SearchView" />
 
     <item
+        android:id="@+id/toolbar_list"
+        android:title="Events"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/toolbar_map"
         android:title="Map"
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/toolbar_list"
-        android:title="List"
-        app:showAsAction="never"/>
-
-    <item
-        android:id="@+id/toolbar_course"
-        android:title="Courses"
+        android:id="@+id/toolbar_plans"
+        android:title="Plans"
         app:showAsAction="never" />
 
     <item
@@ -29,6 +28,9 @@
 
     <item android:id="@+id/toolbar_manager"
         android:title="Manager"
+        app:showAsAction="never"/>
+    <item android:id="@+id/toolbar_signout"
+        android:title="Sign Out"
         app:showAsAction="never"/>
 
 </menu>

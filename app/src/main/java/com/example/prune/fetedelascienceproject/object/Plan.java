@@ -1,5 +1,9 @@
 package com.example.prune.fetedelascienceproject.object;
 
+import android.util.Log;
+
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -8,7 +12,7 @@ public class Plan {
 
     private String planID;
     private List<Events> events;
-    private List<String> recordids;
+    private List<String> ids;
     private String name;
 
     public Plan() {
@@ -19,6 +23,7 @@ public class Plan {
     public void add(Events event) {
         if (!events.contains(event)) {
             events.add(event);
+            Log.d("STP MARCHE", "add: Event has been added");
         }
     }
 
@@ -29,7 +34,7 @@ public class Plan {
 
     }
 
-
+    @Exclude
     public List<Events> getEvents() {
         return events;
     }
@@ -38,16 +43,16 @@ public class Plan {
         this.events = events;
     }
 
-    public List<String> getRecordids() {
-        return recordids;
+    public List<String> getids() {
+        return ids;
     }
 
-    public void setRecordids(List<String> recordids) {
-        this.recordids = recordids;
+    public void ids(List<String> ids) {
+        this.ids = ids;
     }
 
-    public void setCourseid(String planID) { this.planID = planID; }
-    public String getCourseid() {
+    public void setId(String planID) { this.planID = planID; }
+    public String getId() {
         return planID;
     }
 
@@ -60,10 +65,10 @@ public class Plan {
 
     public void populateEvents(List<Events> allEvents) {
         events = new ArrayList<>();
-        if(recordids != null) {
-            for(String recordid : recordids) {
+        if(ids != null) {
+            for(String id : ids) {
                 for(Events event : allEvents) {
-                    if(event.id.equals(recordid)) {
+                    if(event.id.equals(id)) {
                         System.out.println("added");
                         events.add(event);
                     }
@@ -72,9 +77,9 @@ public class Plan {
         }
     }
 
-    public void populateRecordids() {
-        recordids = new ArrayList<>();
-        for(Events event : events) { recordids.add(event.id); }
+    public void populateids() {
+        ids = new ArrayList<>();
+        for(Events event : events) { ids.add(event.id); }
     }
 
     public boolean isInList(List<Plan> courses) {
