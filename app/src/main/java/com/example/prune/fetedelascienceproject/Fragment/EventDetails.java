@@ -3,6 +3,7 @@ package com.example.prune.fetedelascienceproject.Fragment;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +28,13 @@ public class EventDetails extends Fragment {
     private Events event;
     private TransportMode transportMode = TransportMode.DRIVE;
     private boolean isManager = false;
+    TextView tv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragmenteventdetails, container, false);
         activity = ((MainActivity) getActivity());
+        tv = view.findViewById(R.id.numberVote);
         NumberPicker np = view.findViewById(R.id.remainingPlacesNumberPicker);
         np.setMinValue(0);
         np.setMaxValue(1000);
@@ -85,7 +88,7 @@ public class EventDetails extends Fragment {
                 event.setEventFirebase(eventFirebase);
             }
             ((RatingBar) view.findViewById(R.id.ratingEvent)).setRating(event.getEventFirebase().rating);
-            ((TextView) view.findViewById(R.id.numberVote)).setText(event.getEventFirebase().nbVotes + " avis" );
+            tv.setText(event.getEventFirebase().nbVotes + " avis" );
             if(event.getEventFirebase().remaining != -1){
                 ((NumberPicker) view.findViewById(R.id.remainingPlacesNumberPicker)).setValue(this.event.getEventFirebase().remaining);
                 ((TextView) view
@@ -129,7 +132,7 @@ public class EventDetails extends Fragment {
         event.getEventFirebase().nbVotes = nbVotesf;
         Firebase.saveEventFirebase(event.getEventFirebase());
         ((RatingBar) view.findViewById(R.id.ratingEvent)).setRating(event.getEventFirebase().rating);
-        ((TextView) view.findViewById(R.id.numberVote)).setText(event.getEventFirebase().nbVotes);
+        tv.setText(Integer.toString(nbVotesf) + " avis");
         view.findViewById(R.id.rateButton).setEnabled(false);
     }
 

@@ -35,7 +35,7 @@ public class EventListAdapter extends Lists<Events> implements Observer {
             Log.d("tryit", "Je suis passé dans le non null " + event.fields.apercu);
             Picasso.with(context).load(event.fields.apercu).into((ImageView) holder.view.findViewById(R.id.image));
         }else{
-            holder.view.findViewById(R.id.imageEvent).setVisibility(View.GONE);
+            holder.view.findViewById(R.id.image).setVisibility(View.GONE);
         }
         holder.view.setOnClickListener(l -> ((MainActivity) context).displayEventDetails(position));
         eventToViewHolder.put(event, holder);
