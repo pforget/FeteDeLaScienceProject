@@ -48,10 +48,10 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
 
         private static final String TAG = "EmailPassword";
 
-        private TextView mStatusTextView;
-        private TextView mDetailTextView;
         private EditText mEmailField;
         private EditText mPasswordField;
+        private ProgressBar spinner;
+
 
         // [START declare_auth]
         private FirebaseAuth mAuth;
@@ -64,10 +64,9 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             setContentView(R.layout.activity_email_password);
 
             // Views
-            mStatusTextView = findViewById(R.id.status);
-            mDetailTextView = findViewById(R.id.detail);
             mEmailField = findViewById(R.id.fieldEmail);
             mPasswordField = findViewById(R.id.fieldPassword);
+            spinner = findViewById(R.id.progressBar);
 
             // Buttons
             findViewById(R.id.emailSignInButton).setOnClickListener(this);
@@ -146,6 +145,7 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                                 Log.d(TAG, "signInWithEmail:success");
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
+
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -155,9 +155,6 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
                             }
 
                             // [START_EXCLUDE]
-                            if (!task.isSuccessful()) {
-                                mStatusTextView.setText(R.string.auth_failed);
-                            }
                            // hideProgressDialog();
                             // [END_EXCLUDE]
                         }
@@ -227,20 +224,26 @@ public class EmailPasswordActivity extends AppCompatActivity implements View.OnC
             //hideProgressDialog();
             if (user != null) {
                 Intent main = new Intent(this,MainActivity.class);
-                startActivity(main);
+                startActivityForResult(main,0);
             } else {
-                mStatusTextView.setText(R.string.signed_out);
-                mDetailTextView.setText(null);
-
                 findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
                 findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
                 findViewById(R.id.signedInButtons).setVisibility(View.GONE);
+                spinner.setVisibility(View.GONE);
             }
         }
-
+    protected void onActivityResult(int requestCode, int resultCode,
+                                    Intent data) {
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                spinner.setVisibility(View.GONE);
+            }
+        }
+    }
         @Override
         public void onClick(View v) {
             View view = this.getCurrentFocus();
+            spinner.setVisibility(View.VISIBLE);
             if (view != null) {
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
