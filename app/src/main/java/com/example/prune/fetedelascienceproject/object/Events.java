@@ -6,24 +6,25 @@ import java.util.Observer;
 
 public class Events {
 
-
-    public String title;
     public String id;
-    public String description;
-    public String descriptionbig;
-    public String zelda;
-    public double[] geolocalisation;
-    public String image;
-    public String apercu;
+    public class Fields {
+        public String title;
+
+        public String description;
+        public String descriptionbig;
+        public String zelda;
+        public double[] geolocalisation;
+        public String image;
+        public String apercu;
+    }
+    public Events.Fields fields;
 
     private Observer observer;
     public void attach(Observer observer) {
         this.observer = observer;
     }
     public LatLng location;
-
     private FirebaseEvent eventFirebase;
-
     public FirebaseEvent getEventFirebase() {
         return eventFirebase;
     }
@@ -36,6 +37,6 @@ public class Events {
     }
 
     public boolean hasGeolocalisation() {
-        return (geolocalisation != null) && (geolocalisation.length >= 2);
+        return (fields.geolocalisation != null) && (fields.geolocalisation.length >= 2);
     }
 }
